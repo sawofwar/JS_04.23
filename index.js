@@ -1,10 +1,20 @@
 "use strict";
 
 function makeDeepCopy(object) {
-  // 1. accept object, return copy
   // 2. if argument isn't object, throw error
 
-  return Object.assign({}, object);
+  // 1. accept object, return copy
+
+  const clone = {};
+  for (const property in object) {
+    if (typeof object[property] === "object" && object[property] !== null) {
+      clone[property] = makeDeepCopy(object[property]);
+    } else {
+      clone[property] = object[property];
+    }
+  }
+
+  return clone;
 }
 
 const testObject = {
@@ -29,9 +39,27 @@ const testObject = {
   },
 };
 
+const testObject2 = {
+  a: "b",
+  b: {
+    d: "e",
+    c: false,
+  },
+};
+
+const testObject3 = {
+  a: "b",
+  b: {
+    c: false,
+    d: {
+      e: "test string",
+      f: 123,
+    },
+  },
+};
+
 const testCopy = makeDeepCopy(testObject);
-console.log(testCopy);
 
 testCopy.b.d.e = "rewritten";
-console.log(testCopy.b.d.e);
 console.log(testObject.b.d.e);
+console.log(testCopy.b.d.e);
