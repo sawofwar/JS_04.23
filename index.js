@@ -9,25 +9,38 @@
 */
 
 function makeDeepCopy(object) {
-  // 2. if argument isn't object, throw error
+  if (!object instanceof Object) throw Error("Invalid argument!");
 
-  // 1. accept object, return copy
+  // two cases: (1) array and (2) object
+  // 1. check if "object" is actually an array
+  if (object instanceof Array) {
+    return object.map((element) => {
+      // a) if object not primitive => re-run the function
+      if (typeof element === "object") {
+        return makeDeepCopy(element);
 
+        // b) otherwise return element
+      } else {
+        return element;
+      }
+    });
+  }
+
+  // 2. if "object" is an object
   const clone = {};
-
-  // looping through object props
   for (const property in object) {
-    // if property is object & if it's not null, do a recursion
-
-    // console.log("Property is object : ", object[property]);
-
+    // a) check map first because it's an object too
     if (object[property] instanceof Map) {
       clone[property] = new Map(object[property]);
+
+      // b) if this is a normal object => re-run the function
     } else if (
       typeof object[property] === "object" &&
       object[property] !== null
     ) {
       clone[property] = makeDeepCopy(object[property]);
+
+      // c) otherwies just return property
     } else {
       clone[property] = object[property];
     }
@@ -35,18 +48,3 @@ function makeDeepCopy(object) {
 
   return clone;
 }
-
-const testObject = {
-  a: true,
-  b: {
-    c: new Map([
-      [1, true],
-      [[2, 3, 4], "test string"],
-    ]),
-  },
-};
-
-const copy = makeDeepCopy(testObject);
-
-console.log("Copy : ", copy.b);
-console.log("Original object : ", testObject.b);
