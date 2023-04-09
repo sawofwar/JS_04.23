@@ -1,5 +1,13 @@
 "use strict";
 
+/*
+нужно делать глубокую копию только обычного объекта, или функция так же должна уметь принимать и копировать массивы?
+
+Массивы в том числе, плюс массивы могут быть вложенными
+А в объекте могут быть как массивы так и объекты так и мэпы
+
+*/
+
 function makeDeepCopy(object) {
   // 2. if argument isn't object, throw error
 
@@ -58,7 +66,33 @@ const testObject3 = {
   },
 };
 
+// array for testing
+const testArray = [1, , "abc", [true, { a: 99, b: "hello" }]];
+
+const testMap = new Map([
+  ["test", true],
+  ["b", 123],
+  [
+    "testObject",
+    {
+      a: "j",
+      b: 2394,
+      c: false,
+    },
+  ],
+]);
+
 const testCopy = makeDeepCopy(testObject);
+const testCopyMap = makeDeepCopy(testArray);
+
+const testArrayCopy = makeDeepCopy(testArray);
+console.log(testArrayCopy);
+
+testArrayCopy[3][1].b = "jsjsj";
+
+// testArray[3][1].b = "jsjsj";
+console.log(`Original array prop: ${testArray[3][1].b}`);
+console.log(`Copy array prop rewritten: ${testArrayCopy[3][1].b}`);
 
 testCopy.b.d.e = "rewritten";
 console.log(testObject.b.d.e);
