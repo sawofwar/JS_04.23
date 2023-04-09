@@ -9,7 +9,7 @@
 */
 
 function makeDeepCopy(object) {
-  if (!object instanceof Object) throw Error("Invalid argument!");
+  if (!(object instanceof Object)) throw Error("Invalid argument!");
 
   // two cases: (1) array and (2) object
   // 1. check if "object" is actually an array
