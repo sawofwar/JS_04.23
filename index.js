@@ -1,6 +1,7 @@
 "use strict";
 
 // 🔥 TASK 1
+// TODO: make function work with Set too
 function makeDeepCopy(object) {
   if (!(object instanceof Object)) {
     throw Error();
@@ -90,6 +91,7 @@ function selectFromInterval([...array], from, to) {
 }
 
 // 🔥 TASK 3
+// TODO: if from = to, throw error
 function createIterable(from, to) {
   if (!Number.isFinite(from) || !Number.isFinite(to)) throw Error();
   if (from > to) throw Error();
