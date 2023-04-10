@@ -2,7 +2,6 @@
 
 // 🔥 TASK 1
 // TODO: check if empty error works in TASK 1
-// old code:
 /*
 function makeDeepCopy(object) {
   if (!(object instanceof Object)) throw Error();
@@ -92,12 +91,34 @@ function selectFromInterval([...array], from, to) {
 */
 
 // 🔥 TASK 3
-function createIterable(from, to) {
-  const result = [];
+// old code
 
-  for (let i = from; i <= to; i++) {
-    result.push(i);
-  }
+function createIterable(from, to) {
+  const start = from;
+  const end = to;
+  const result = {
+    from: start,
+    to: end,
+  };
+
+  result[Symbol.iterator] = function () {
+    return {
+      current: this.from,
+      last: this.to,
+
+      next() {
+        if (this.current <= this.last) {
+          return { done: false, value: this.current++ };
+        } else {
+          return { done: true };
+        }
+      },
+    };
+  };
 
   return result;
 }
+
+const obj = createIterable(1, 200);
+// console.log(obj);
+for (const num of obj) console.log(num);
