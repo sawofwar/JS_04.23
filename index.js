@@ -1,6 +1,7 @@
 "use strict";
 
 // 🔥 TASK 1
+// TODO: check if empty error works in TASK 1
 // old code:
 /*
 function makeDeepCopy(object) {
@@ -45,5 +46,30 @@ function makeDeepCopy(object) {
 }
 */
 
-// TODO: check if empty error works in TASK 1
 // 🔥 TASK 2
+function selectFromInterval([...array], from, to) {
+  if (from === to) return [];
+  const result = [];
+  switch (from > to) {
+    case true:
+      console.log("case true");
+
+      array.forEach((element) => {
+        if (element >= from && element <= to) {
+          result.push(element);
+          console.log("pushing");
+        }
+      });
+      break;
+    case false:
+      if (element <= from && element >= to) {
+        result.push(element);
+        console.log("pushing");
+      }
+      break;
+  }
+
+  return result;
+}
+
+console.log(selectFromInterval([1, 3, 5], 5, 2));
