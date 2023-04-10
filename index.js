@@ -50,19 +50,21 @@ function makeDeepCopy(object) {
 function selectFromInterval([...array], from, to) {
   if (from === to) return [];
   const result = [];
+
   switch (from > to) {
     case true:
       console.log("case true");
 
       array.forEach((element) => {
-        if (element >= from && element <= to) {
+        if (element <= from && element >= to) {
           result.push(element);
           console.log("pushing");
         }
       });
       break;
     case false:
-      if (element <= from && element >= to) {
+      console.log("case false");
+      if (element >= from && element <= to) {
         result.push(element);
         console.log("pushing");
       }
