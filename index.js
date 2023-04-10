@@ -1,8 +1,6 @@
 "use strict";
 
 // 🔥 TASK 1
-// TODO: check if empty error works in TASK 1
-/*
 function makeDeepCopy(object) {
   if (!(object instanceof Object)) throw Error();
 
@@ -43,10 +41,8 @@ function makeDeepCopy(object) {
 
   return clone;
 }
-*/
 
 // 🔥 TASK 2
-/*
 function selectFromInterval([...array], from, to) {
   // 1. check "from" and "to"
   if (
@@ -88,12 +84,12 @@ function selectFromInterval([...array], from, to) {
   }
   return result;
 }
-*/
 
 // 🔥 TASK 3
-// old code
-
 function createIterable(from, to) {
+  if (!Number.isFinite(from) || !Number.isFinite(to)) throw Error();
+  if (from > to) throw Error();
+
   const start = from;
   const end = to;
   const result = {
@@ -118,7 +114,3 @@ function createIterable(from, to) {
 
   return result;
 }
-
-const obj = createIterable(1, 200);
-// console.log(obj);
-for (const num of obj) console.log(num);
