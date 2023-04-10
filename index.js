@@ -51,10 +51,19 @@ function selectFromInterval([...array], from, to) {
   if (from === to) return [];
   const result = [];
 
-  switch (from > to) {
+  switch (to > from) {
     case true:
       console.log("case true");
 
+      array.forEach((element) => {
+        if (element >= from && element <= to) {
+          result.push(element);
+          console.log("pushing");
+        }
+      });
+      break;
+    case false:
+      console.log("case false : reverting");
       array.forEach((element) => {
         if (element <= from && element >= to) {
           result.push(element);
@@ -62,16 +71,12 @@ function selectFromInterval([...array], from, to) {
         }
       });
       break;
-    case false:
-      console.log("case false");
-      if (element >= from && element <= to) {
-        result.push(element);
-        console.log("pushing");
-      }
-      break;
   }
 
   return result;
 }
 
-console.log(selectFromInterval([1, 3, 5], 5, 2));
+console.log(selectFromInterval([1, 3, 5], 5, 2)); // [3, 2] -- correct
+console.log(selectFromInterval([-2, -15, 0, 4], -13, -5));
+console.log(selectFromInterval([1, 20, 40, -1, 0, 11], -2, 5));
+// console.log(selectFromInterval([1, 3, 5], 5, 2)); // [3, 2] -- correct
