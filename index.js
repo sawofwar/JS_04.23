@@ -4,7 +4,7 @@
 // old code:
 /*
 function makeDeepCopy(object) {
-  if (!(object instanceof Object)) throw Error("Invalid argument!");
+  if (!(object instanceof Object)) throw Error();
 
   // two cases: (1) array and (2) object
   // 1. check if "object" is actually an array
@@ -45,4 +45,5 @@ function makeDeepCopy(object) {
 }
 */
 
+// TODO: check if empty error works in TASK 1
 // 🔥 TASK 2
