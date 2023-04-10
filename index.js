@@ -48,35 +48,48 @@ function makeDeepCopy(object) {
 
 // 🔥 TASK 2
 function selectFromInterval([...array], from, to) {
+  // 1. check "from" and "to"
+  if (
+    typeof from !== "number" ||
+    Number.isNaN(from) ||
+    !Number.isFinite(from) ||
+    typeof to !== "number" ||
+    Number.isNaN(to) ||
+    !Number.isFinite(to)
+  )
+    throw Error();
+
+  // 2. check array
+  array.forEach((element) => {
+    if (
+      typeof element !== "number" ||
+      Number.isNaN(element) ||
+      !Number.isFinite(element)
+    )
+      throw Error();
+  });
+
+  // 3. main code
   if (from === to) return [];
   const result = [];
 
   switch (to > from) {
     case true:
-      console.log("case true");
-
       array.forEach((element) => {
-        if (element >= from && element <= to) {
-          result.push(element);
-          console.log("pushing");
-        }
+        if (element >= from && element <= to) result.push(element);
       });
       break;
+
     case false:
-      console.log("case false : reverting");
       array.forEach((element) => {
-        if (element <= from && element >= to) {
-          result.push(element);
-          console.log("pushing");
-        }
+        if (element <= from && element >= to) result.push(element);
       });
       break;
   }
-
   return result;
 }
 
 console.log(selectFromInterval([1, 3, 5], 5, 2)); // [3, 2] -- correct
 console.log(selectFromInterval([-2, -15, 0, 4], -13, -5));
 console.log(selectFromInterval([1, 20, 40, -1, 0, 11], -2, 5));
-// console.log(selectFromInterval([1, 3, 5], 5, 2)); // [3, 2] -- correct
+console.log(selectFromInterval(true, 2, 3));
