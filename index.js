@@ -1,6 +1,7 @@
 "use strict";
 
 // 🔥 TASK 1
+// TODO: if nothing is entered, program interprets it as 0 and keeps working
 function getFactorial(number) {
   let factorial = 1;
   for (let i = 1; i <= number; i++) {
@@ -62,6 +63,7 @@ function getDelimiters(number) {
 })();
 
 // 🔥 TASK 2
+// TODO: if three spaces are entered, the program works (should throw error or something)
 function generateRow(string, number) {
   let row = "";
   for (let i = 0; i < number; i++) {
