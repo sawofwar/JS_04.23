@@ -2,10 +2,12 @@
 
 // 🔥 TASK 1
 function makeDeepCopy(object) {
-  if (!(object instanceof Object)) throw Error();
+  if (!(object instanceof Object)) {
+    throw Error();
+  }
 
   // two cases: (1) array and (2) object
-  // 1. check if "object" is actually an array
+  // (1) check if "object" is actually an array
   if (object instanceof Array) {
     return object.map((element) => {
       // a) if object not primitive => re-run the function
@@ -19,7 +21,7 @@ function makeDeepCopy(object) {
     });
   }
 
-  // 2. if "object" is an object
+  // (2) if "object" is an object
   const clone = {};
   for (const property in object) {
     // a) check map first because it's an object too
@@ -52,8 +54,9 @@ function selectFromInterval([...array], from, to) {
     typeof to !== "number" ||
     Number.isNaN(to) ||
     !Number.isFinite(to)
-  )
+  ) {
     throw Error();
+  }
 
   // 2. check array
   array.forEach((element) => {
@@ -61,8 +64,9 @@ function selectFromInterval([...array], from, to) {
       typeof element !== "number" ||
       Number.isNaN(element) ||
       !Number.isFinite(element)
-    )
+    ) {
       throw Error();
+    }
   });
 
   // 3. main code
