@@ -1,29 +1,25 @@
 "use strict";
 
 // 🔥 TASK 1
-
+// 🔥 TODO: ask if logging this should happen on each iteration or just once
+// TODO: ask if it's okay if arrow function points to window
 Array.prototype.customFilter = function (callbackFn, thisObject) {
-  // const filtered = [];
-  console.log(this.length);
-  this.forEach(() => {
-    console.log(this);
-  });
+  const filteredArray = [];
+
+  for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    const index = i;
+    const array = this;
+
+    if (callbackFn.call(thisObject, element, index, array))
+      filteredArray.push(element);
+  }
+
+  return filteredArray;
 };
 
+// 🔥 random tests
 /*
-
-1. function accepts callback
-    a. optional object as 2nd arg that is used as this
-
-2. should work same as .filter()
-
-3. callback gets the same parameters as .filter(): element, index, array
-
-4. function should be a native method of Array
-
-filter creates a shallow copy of a portion of a given array
-*/
-
 const testFunction = function () {
   console.log("hi");
 };
@@ -32,12 +28,12 @@ const callbackFunction = function (element, index, array) {
   console.log("hi");
 };
 
-// 🔥 this is how the final version call should look like
-// customFilter((element) => {
-//   console.log(element);
-// });
+const testArray = [1, 2, 3, 4, 5];
 
-const testArray = [1, 2, 3];
-testArray.customFilter(() => {
-  console.log(this);
+const filteredTestArray = testArray.customFilter(testFunction, {
+  name: "constantine",
+  age: 27,
+  hasGf: true,
 });
+console.log(filteredTestArray);
+*/
