@@ -1,4 +1,4 @@
 .gitignore
 
-lecture_03.md
+*.md
 index.html
