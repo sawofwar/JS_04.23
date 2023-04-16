@@ -1,4 +1,6 @@
 .gitignore
 
+currying.js
+
 *.md
 index.html
