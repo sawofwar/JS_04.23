@@ -19,25 +19,6 @@ function curry(fn) {
 }
 
 // 🔥 TASK 2
-
-/*
-Calculator class
-
-constructor accepts two valid numbers (integers & floats);
-if one of the parameters is invalid, throw new Error
-
-class has methods:
-setX
-setY
-getSum
-getMul
-getSub
-getDiv
-
-
-setX -- first number
-*/
-
 class Calculator {
   constructor(x, y) {
     // check number
@@ -51,7 +32,7 @@ class Calculator {
     this.y = y;
   }
 
-  setX(num) {
+  _setX(num) {
     // check number
     if (typeof num !== "number") throw new Error();
     // check infinity
@@ -61,7 +42,8 @@ class Calculator {
 
     this.x = num;
   }
-  setY(num) {
+
+  _setY(num) {
     // check number
     if (typeof num !== "number") throw new Error();
     // check infinity
@@ -72,45 +54,45 @@ class Calculator {
     this.y = num;
   }
 
-  getSum() {
+  _getSum() {
     return this.x + this.y;
   }
 
-  getMul() {
+  _getMul() {
     return this.x * this.y;
   }
 
-  getSub() {
+  _getSub() {
     return Math.abs(this.x - this.y);
   }
 
-  getDiv() {
+  _getDiv() {
+    // check if y is 0
     if (this.y == 0) throw new Error();
-
     return this.x / this.y;
   }
+
+  get setX() {
+    return this._setX.bind(this);
+  }
+
+  get setY() {
+    return this._setY.bind(this);
+  }
+
+  get getSum() {
+    return this._getSum.bind(this);
+  }
+
+  get getMul() {
+    return this._getMul.bind(this);
+  }
+
+  get getSub() {
+    return this._getSub.bind(this);
+  }
+
+  get getDiv() {
+    return this._getDiv.bind(this);
+  }
 }
-
-const myCalculator = new Calculator(10, 10);
-console.log(myCalculator.setX(10));
-console.log(myCalculator.x);
-
-// myCalculator.setX();
-// console.log(!!0);
-
-/*
-string
-number
-boolean
-undefined
-null
-bigInt
-symbsols
-
-array
-object
-function/class
-map
-set
-
-*/
