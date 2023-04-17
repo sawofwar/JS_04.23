@@ -96,3 +96,54 @@ class Calculator {
     return this._getDiv.bind(this);
   }
 }
+
+// 🔥 TASK 3
+class RickAndMorty {
+  constructor() {}
+
+  getCharacter(id) {
+    if (!isFinite(id)) throw new Error();
+    if (id === null) throw new Error();
+    if (id < 0) throw new Error();
+    if (id > 826) throw new Error();
+
+    const floored = Math.floor(id);
+
+    fetch(`https://rickandmortyapi.com/api/character/${floored}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error();
+        } else {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        if (data.error && data.error.toLowerCase() === "character not found")
+          return null;
+      })
+      .catch((error) => {
+        console.error(error.message);
+        return error.message;
+      });
+  }
+
+  async getEpisode(id) {
+    try {
+      if (!isFinite(id)) throw new Error();
+      if (id === null) throw new Error();
+      if (id < 0) throw new Error();
+      if (id > 51) throw new Error();
+
+      const res = await fetch(`https://rickandmortyapi.com/api/episode/${id}`);
+      const data = await res.json();
+
+      if (data.error && data.error.toLowerCase() === "episode not found")
+        return null;
+
+      if (!res.ok) throw new Error();
+    } catch (error) {
+      console.error(error.message);
+      return error.message;
+    }
+  }
+}
