@@ -100,11 +100,13 @@ class RickAndMorty {
     if (!isFinite(id)) throw new Error();
     if (id === null) throw new Error();
     if (id < 0) throw new Error();
-    if (id > 826) throw new Error();
+    // if (id > 826) throw new Error();
 
     const floored = Math.floor(id);
 
-    fetch(`https://rickandmortyapi.com/api/character/${floored}`)
+    const character = fetch(
+      `https://rickandmortyapi.com/api/character/${floored}`
+    )
       .then((res) => {
         if (!res.ok) {
           throw new Error();
@@ -115,10 +117,14 @@ class RickAndMorty {
       .then((data) => {
         if (data.error && data.error.toLowerCase() === "character not found")
           return null;
+
+        return data;
       })
       .catch((error) => {
         return null;
       });
+
+    return character;
   }
 
   async getEpisode(id) {
@@ -126,7 +132,7 @@ class RickAndMorty {
       if (!isFinite(id)) throw new Error();
       if (id === null) throw new Error();
       if (id < 0) throw new Error();
-      if (id > 51) throw new Error();
+      // if (id > 51) throw new Error();
 
       const floored = Math.floor(id);
 
@@ -139,8 +145,26 @@ class RickAndMorty {
         return null;
 
       if (!res.ok) throw new Error();
+
+      return data;
     } catch (error) {
       return null;
     }
   }
 }
+
+const rick = new RickAndMorty();
+console.log(rick.getEpisode(11));
+
+async function testMethod() {
+  const character = await rick.getCharacter(123);
+  console.log(character);
+
+  const episode = await rick.getEpisode(23);
+  console.log(episode);
+}
+
+testMethod();
+
+// убрал проверку id > 826 & id > 51
+// добавил return
