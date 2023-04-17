@@ -1,11 +1,6 @@
 "use strict";
 
-// 🔥 TASK 1 ✅✅✅
-
-function sum(a, b, c) {
-  return a + b + c;
-}
-
+// 🔥 TASK 1
 function curry(fn) {
   return function currying(...params) {
     if (params.length >= fn.length) {
@@ -122,8 +117,7 @@ class RickAndMorty {
           return null;
       })
       .catch((error) => {
-        console.error(error.message);
-        return error.message;
+        return null;
       });
   }
 
@@ -134,7 +128,11 @@ class RickAndMorty {
       if (id < 0) throw new Error();
       if (id > 51) throw new Error();
 
-      const res = await fetch(`https://rickandmortyapi.com/api/episode/${id}`);
+      const floored = Math.floor(id);
+
+      const res = await fetch(
+        `https://rickandmortyapi.com/api/episode/${floored}`
+      );
       const data = await res.json();
 
       if (data.error && data.error.toLowerCase() === "episode not found")
@@ -142,8 +140,7 @@ class RickAndMorty {
 
       if (!res.ok) throw new Error();
     } catch (error) {
-      console.error(error.message);
-      return error.message;
+      return null;
     }
   }
 }
