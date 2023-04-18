@@ -38,22 +38,26 @@ class Stack {
   }
 
   push(elem) {
-    // ✨ stack length logic
+    // ✨ BEFORE EVERYTHING: stack length logic
     let stackLength = 0;
     for (const element of this.stack) {
       stackLength++;
     }
+
+    if (stackLength >= this.stackSize) throw new Error();
 
     // ✨ add element
     this.stack[stackLength] = elem;
   }
 
-  pop(elem) {
+  pop() {
     // ✨ logic for stack length
     let stackLength = 0;
     for (const element of this.stack) {
       stackLength++;
     }
+
+    if (stackLength === 0) throw new Error();
 
     // ✨ temp copy & array to push results
     const stackCopy = [...this.stack];
@@ -71,12 +75,41 @@ class Stack {
     // ✨ return popped element
     return stackCopy[LAST_ELEMENT];
   }
+
+  peek() {
+    let stackLength = 0;
+    for (const element of this.stack) {
+      stackLength++;
+    }
+
+    if (stackLength === 0) return null;
+
+    const LAST_ELEMENT = stackLength - 1;
+
+    return this.stack[LAST_ELEMENT];
+  }
+
+  isEmpty() {
+    let stackLength = 0;
+    for (const element of this.stack) {
+      stackLength++;
+    }
+
+    if (stackLength === 0) return true;
+    else return false;
+  }
+
+  toArray() {
+    return [...this.stack];
+  }
 }
 
 const stack = new Stack();
-stack.push(14);
+const array = stack.toArray();
+// stack.push(14);
 // console.log(stack.pop());
-console.log(stack);
+// stack.stack = [];
+// console.log(stack.stack);
 
 /*
 const invalidNumbers = [Infinity, -Infinity, NaN];
@@ -87,3 +120,5 @@ for (const number of invalidNumbers) {
 
 // console.log(stack);
 // console.log(stackTwenty);
+
+module.exports = Stack;
