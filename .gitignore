@@ -1,7 +1,16 @@
 .gitignore
 .prettierignore
 
+package.json
+package-lock.json
+
+node_modules
+
+*.test.js
+
 currying.js
 
 *.md
 index.html
+
+jest.config.js
