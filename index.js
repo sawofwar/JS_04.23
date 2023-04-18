@@ -38,12 +38,13 @@ class Stack {
   }
 
   push(elem) {
+    // ✨ stack length logic
     let stackLength = 0;
-
     for (const element of this.stack) {
       stackLength++;
     }
 
+    // ✨ add element
     this.stack[stackLength] = elem;
   }
 
@@ -58,14 +59,16 @@ class Stack {
     const stackCopy = [...this.stack];
     const result = [];
 
-    // ✨
+    // ✨ index for the loop below & for returning popped element
     const LAST_ELEMENT = stackLength - 1;
 
+    // ✨ construct result for updating this.stack
     for (let i = 0; i < LAST_ELEMENT; i++) {
       result[i] = this.stack[i];
     }
-
     this.stack = [...result];
+
+    // ✨ return popped element
     return stackCopy[LAST_ELEMENT];
   }
 }
