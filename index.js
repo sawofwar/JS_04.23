@@ -95,5 +95,3 @@ class Stack {
     return newStack;
   }
 }
-
-module.exports = Stack;
