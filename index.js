@@ -1,5 +1,6 @@
 "use strict";
 
+// 🔥 TASK 1
 // 🔥 helper functions
 function isIterable(obj) {
   if (obj === null) {
@@ -21,60 +22,60 @@ class Stack {
 
     this.stackSize = stackSize;
     this.stack = [];
+    this.stackLength = 0;
+    this.lastElement;
   }
 
   push(elem) {
-    let stackLength = 0;
-    for (const element of this.stack) {
-      stackLength++;
-    }
+    if (this.stackLength >= this.stackSize) throw new Error("Limit exceeded");
 
-    if (stackLength >= this.stackSize) throw new Error("Limit exceeded");
+    this.lastElement = elem;
+    this.stack[this.stackLength] = elem;
 
-    this.stack[stackLength] = elem;
+    this.stackLength++;
   }
 
   pop() {
-    let stackLength = 0;
-    for (const element of this.stack) {
-      stackLength++;
+    if (this.stackLength === 0) throw new Error("Empty stack");
+
+    // const lastElement = this.stack[this.stackLength - 1];
+    let increment = 0;
+    const result = this.stack[increment];
+
+    function recursivePop(element) {
+      if (element === this.lastElement) console.log("end");
+      else {
+        result[increment] = this.stack[increment];
+        increment++;
+        recursivePop(element);
+      }
     }
+    console.log(result);
 
-    if (stackLength === 0) throw new Error("Empty stack");
+    this.stackLength--;
 
-    const stackCopy = [...this.stack];
-    const result = [];
+    // const stackCopy = [...this.stack];
+    // const result = [];
+    // const lastElement = this.stackLength - 1;
 
-    const LAST_ELEMENT = stackLength - 1;
+    // this.stack = [...result];
 
-    for (let i = 0; i < LAST_ELEMENT; i++) {
-      result[i] = this.stack[i];
-    }
-    this.stack = [...result];
+    // delete stackCopy[lastElement];
+    // console.log(stackCopy);
 
-    return stackCopy[LAST_ELEMENT];
+    // this.stackLength--;
+    // return stackCopy[lastElement];
   }
 
   peek() {
-    let stackLength = 0;
-    for (const element of this.stack) {
-      stackLength++;
-    }
+    if (this.stackLength === 0) return null;
+    const lastElement = this.stackLength - 1;
 
-    if (stackLength === 0) return null;
-
-    const LAST_ELEMENT = stackLength - 1;
-
-    return this.stack[LAST_ELEMENT];
+    return this.stack[lastElement];
   }
 
   isEmpty() {
-    let stackLength = 0;
-    for (const element of this.stack) {
-      stackLength++;
-    }
-
-    if (stackLength === 0) return true;
+    if (this.stackLength === 0) return true;
     else return false;
   }
 
@@ -95,3 +96,43 @@ class Stack {
     return newStack;
   }
 }
+
+// 🔥 TASK 2
+class LinkedList {
+  constructor() {
+    this.linkedList = [];
+    this.listLength = 0;
+  }
+
+  append(elem) {
+    this.linkedList = [...this.linkedList, elem];
+    this.listLength++;
+  }
+
+  prepend(elem) {
+    this.linkedList = [elem, ...this.linkedList];
+    this.listLength--;
+  }
+
+  find(elem) {
+    for (const element of this.linkedList) {
+      if (element === elem) return element;
+    }
+    return null;
+  }
+
+  static fromIterable(iterable) {
+    if (isIterable(iterable) === false) throw new Error("Not iterable");
+
+    let iterableLength = 0;
+    for (const element of iterable) {
+      iterableLength++;
+    }
+
+    const newList = new LinkedList();
+    newList.linkedList = [...iterable];
+    return newList;
+  }
+}
+
+module.exports = Stack;
