@@ -176,6 +176,41 @@ class LinkedList {
   }
 }
 
+// 🔥 TASK 3
+
+/*
+
+brand
+model
+yearOfManufacturing
+maxSpeed
+maxFuelVolume
+fuelConsumption
+damage
+currentFuelVolume -- changes when using dynamic methods
+isStarted -- dynamic changes
+mileage -- dynamic changes
+health -- dynamic changes
+*/
+
+class Car {
+  constructor() {
+    this.brand;
+    this.model;
+    this.yearOfManufacturing;
+    this.maxSpeed = 100;
+    this.maxFuelVolume = 20;
+    this.fuelConsumption = 1;
+    this.damage = 1;
+
+    // changed by dynamic methods
+    this.currentFuelVolume = 0;
+    this.isStarted = false;
+    this.mileage = 0;
+    this.health = 100;
+  }
+}
+
 try {
   module.exports = Stack;
 } catch (error) {}
