@@ -236,6 +236,7 @@ class Car {
       if (typeof number !== "number") return false;
       if (number === NaN || Math.abs(number) === Infinity) return false;
       if (!(number >= from) || !(number <= to)) return false;
+      if (number % 1 !== 0) return false;
       return true;
     };
   }
@@ -282,7 +283,33 @@ class Car {
     this.maxFuelVolume = number;
   }
 
-  _fuelConsumption(number) {}
+  _fuelConsumption(number) {
+    const validRange = this.isValidInteger(0, Infinity);
+    const numberIsValid = validRange(number);
+
+    if (numberIsValid === false) throw new Error("Invalid fuel consumption");
+
+    this.fuelConsumption = number;
+  }
+
+  _damage(number) {
+    const validRange = this.isValidInteger(1, 5);
+    const numberIsValid = validRange(number);
+
+    if (numberIsValid === false) throw new Error("Invalid damage");
+
+    this.damage = number;
+  }
+
+  _start() {
+    if (this.isStarted) throw new Error("Car has already started");
+    this.isStarted = true;
+  }
+
+  shutDownEngine() {
+    if (!this.isStarted) throw new Error("Car hasn't started yet");
+    this.isStarted = false;
+  }
 }
 
 // TODO: remove dashes ❌❌❌❌❌❌❌❌❌❌❌❌
