@@ -138,14 +138,6 @@ class Stack {
   }
 }
 
-const map = new Map([
-  [1, false],
-  ["string", "b"],
-  ["hi", true],
-]);
-
-const stack = Stack.fromIterable(map);
-
 // 🔥 TASK 2
 class LinkedList {
   constructor() {
@@ -183,8 +175,6 @@ class LinkedList {
     return newList;
   }
 }
-
-// ////////////////////////////////////////////////////
 
 try {
   module.exports = Stack;
