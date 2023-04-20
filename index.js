@@ -70,27 +70,6 @@ class Stack {
 
     const lastElement = removeLastElement();
     return lastElement;
-    /*
-    ✅ let stackLength = 0;
-    ✅ for (const element of this.stack) {
-      stackLength++;
-    }
-
-    ✅ if (stackLength === 0) throw new Error("Empty stack");
-
-    const stackCopy = [...this.stack];
-    const result = [];
-
-    ✅ const LAST_ELEMENT = stackLength - 1;
-
-
-    for (let i = 0; i < LAST_ELEMENT; i++) {
-      result[i] = this.stack[i];
-    }
-    this.stack = [...result];
-
-    return stackCopy[LAST_ELEMENT];
-    */
   }
 
   peek() {
@@ -177,34 +156,18 @@ class LinkedList {
 }
 
 // 🔥 TASK 3
-
-/*
-
-brand
-model
-yearOfManufacturing
-maxSpeed
-maxFuelVolume
-fuelConsumption
-damage
-currentFuelVolume -- changes when using dynamic methods
-isStarted -- dynamic changes
-mileage -- dynamic changes
-health -- dynamic changes
-*/
-
 class Car {
-  // #brand;
-  // #model;
-  // #yearOfManufacturing;
-  // #maxSpeed;
-  // #maxFuelVolume;
-  // #fuelConsumption;
-  // #damage;
-  // #currentFuelVolume;
-  // #isStarted;
-  // #mileage;
-  // #health;
+  #brand;
+  #model;
+  #yearOfManufacturing;
+  #maxSpeed;
+  #maxFuelVolume;
+  #fuelConsumption;
+  #damage;
+  #currentFuelVolume;
+  #isStarted;
+  #mileage;
+  #health;
 
   constructor() {
     this.brand;
@@ -284,7 +247,7 @@ class Car {
     this.yearOfManufacturing = number;
   }
 
-  _maxSpeed(number) {
+  maxSpeed(number) {
     const validRange = this.isValidInteger(100, 330);
     const numberIsValid = validRange(number);
 
@@ -293,7 +256,7 @@ class Car {
     this.maxSpeed = number;
   }
 
-  _maxFuelVolume(number) {
+  maxFuelVolume(number) {
     const validRange = this.isValidInteger(20, 100);
     const numberIsValid = validRange(number);
 
@@ -302,7 +265,7 @@ class Car {
     this.maxFuelVolume = number;
   }
 
-  _fuelConsumption(number) {
+  fuelConsumption(number) {
     const validRange = this.isValidInteger(0, Infinity);
     const numberIsValid = validRange(number);
 
@@ -311,7 +274,7 @@ class Car {
     this.fuelConsumption = number;
   }
 
-  _damage(number) {
+  damage(number) {
     const validRange = this.isValidInteger(1, 5);
     const numberIsValid = validRange(number);
 
@@ -320,7 +283,7 @@ class Car {
     this.damage = number;
   }
 
-  _start() {
+  start() {
     if (this.isStarted) throw new Error("Car has already started");
     this.isStarted = true;
   }
@@ -388,9 +351,3 @@ class Car {
     return this.maxFuelVolume - this.currentFuelVolume;
   }
 }
-
-// TODO: remove dashes ❌❌❌❌❌❌❌❌❌❌❌❌
-
-try {
-  module.exports = Car;
-} catch (error) {}
