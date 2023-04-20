@@ -21,50 +21,76 @@ class Stack {
     if (isNaN(stackSize)) throw new Error("Invalid limit value");
 
     this.stackSize = stackSize;
+
     this.stack = [];
     this.stackLength = 0;
-    this.lastElement;
   }
 
   push(elem) {
     if (this.stackLength >= this.stackSize) throw new Error("Limit exceeded");
-
-    this.lastElement = elem;
-    this.stack[this.stackLength] = elem;
-
+    this.stack = [...this.stack, elem];
     this.stackLength++;
   }
 
   pop() {
     if (this.stackLength === 0) throw new Error("Empty stack");
 
-    // const lastElement = this.stack[this.stackLength - 1];
-    let increment = 0;
-    const result = this.stack[increment];
+    const getLength = () => {
+      let length = 0;
 
-    function recursivePop(element) {
-      if (element === this.lastElement) console.log("end");
-      else {
+      const recursiveCounter = () => {
+        if (this.stack[length] === undefined) return;
+        length++;
+        recursiveCounter();
+      };
+      recursiveCounter();
+
+      return length;
+    };
+
+    const removeLastElement = () => {
+      let length = getLength();
+      let increment = 0;
+      const result = [];
+
+      const recursivePusher = () => {
+        if (increment === length - 1) return;
+
         result[increment] = this.stack[increment];
         increment++;
-        recursivePop(element);
-      }
+        recursivePusher();
+        return this.stack[increment];
+      };
+
+      const lastElement = recursivePusher();
+
+      this.stack = result;
+      return lastElement;
+    };
+
+    const lastElement = removeLastElement();
+    return lastElement;
+    /*
+    ✅ let stackLength = 0;
+    ✅ for (const element of this.stack) {
+      stackLength++;
     }
-    console.log(result);
 
-    this.stackLength--;
+    ✅ if (stackLength === 0) throw new Error("Empty stack");
 
-    // const stackCopy = [...this.stack];
-    // const result = [];
-    // const lastElement = this.stackLength - 1;
+    const stackCopy = [...this.stack];
+    const result = [];
 
-    // this.stack = [...result];
+    ✅ const LAST_ELEMENT = stackLength - 1;
 
-    // delete stackCopy[lastElement];
-    // console.log(stackCopy);
 
-    // this.stackLength--;
-    // return stackCopy[lastElement];
+    for (let i = 0; i < LAST_ELEMENT; i++) {
+      result[i] = this.stack[i];
+    }
+    this.stack = [...result];
+
+    return stackCopy[LAST_ELEMENT];
+    */
   }
 
   peek() {
@@ -75,7 +101,22 @@ class Stack {
   }
 
   isEmpty() {
-    if (this.stackLength === 0) return true;
+    const getLength = () => {
+      let length = 0;
+
+      const recursiveCounter = () => {
+        if (this.stack[length] === undefined) return;
+        length++;
+        recursiveCounter();
+      };
+      recursiveCounter();
+
+      return length;
+    };
+
+    const length = getLength();
+
+    if (length === 0) return true;
     else return false;
   }
 
@@ -96,6 +137,14 @@ class Stack {
     return newStack;
   }
 }
+
+const map = new Map([
+  [1, false],
+  ["string", "b"],
+  ["hi", true],
+]);
+
+const stack = Stack.fromIterable(map);
 
 // 🔥 TASK 2
 class LinkedList {
@@ -135,4 +184,8 @@ class LinkedList {
   }
 }
 
-module.exports = Stack;
+// ////////////////////////////////////////////////////
+
+try {
+  module.exports = Stack;
+} catch (error) {}
