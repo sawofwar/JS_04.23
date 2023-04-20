@@ -242,12 +242,22 @@ class Car {
   }
 
   isEnoughFuel(speed, hours) {
-    const CONSUMED_PER_KILOMETERS = 100;
+    const CONSUMED_PER_DISTANCE = 100;
     const distance = speed * hours;
-    const result = distance / (CONSUMED_PER_KILOMETERS * this.fuelConsumption);
+    const result = (distance / CONSUMED_PER_DISTANCE) * this.fuelConsumption;
 
+    // result is how many litres is consumed
     if (result > this.currentFuelVolume) return false;
     if (result <= this.currentFuelVolume) return true;
+  }
+
+  isEnoughHealth(speed, hours) {
+    const distance = speed * hours;
+    const result = (distance / 100) * this.damage;
+
+    // result is amount of damage
+    if (result >= this.health) return false;
+    if (result < this.health) return true;
   }
 
   // 🔥 MAIN METHODS
@@ -350,16 +360,28 @@ class Car {
 
     const isEnoughFuel = this.isEnoughFuel(speed, hours);
     if (isEnoughFuel === false) throw new Error("You don't have enough fuel");
+
+    const isEnoughHealth = this.isEnoughHealth(speed, hours);
+    if (isEnoughHealth === false) throw new Error("Your car won't make it");
+
+    const distance = speed * hours;
+    const resultFuel = (distance / 100) * this.fuelConsumption;
+    this.currentFuelVolume -= resultFuel;
+
+    const resultHealth = (distance / 100) * this.damage;
+    this.health -= resultHealth;
+
+    this.mileage += distance;
   }
 }
 
 // TODO: remove dashes ❌❌❌❌❌❌❌❌❌❌❌❌
 
 // const car = new Car();
-// car.fillUpGasTank(20);
-// console.log(car);
+// car._maxSpeed(160);
+// car.fillUpGasTank(9);
 // car._start();
-// car.drive(100, 100);
+// car.drive(150, 10);
 
 try {
   module.exports = Car;
