@@ -209,8 +209,14 @@ class Car {
     this.mileage = 0;
     this.health = 100;
   }
+
+  isValidString(string) {
+    if (typeof string !== "string") return false;
+    if (string.length < 1 || string.length > 50) return false;
+    return true;
+  }
 }
 
 try {
-  module.exports = Stack;
+  module.exports = Car;
 } catch (error) {}
