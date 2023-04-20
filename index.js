@@ -241,6 +241,15 @@ class Car {
     };
   }
 
+  isEnoughFuel(speed, hours) {
+    const CONSUMED_PER_KILOMETERS = 100;
+    const distance = speed * hours;
+    const result = distance / (CONSUMED_PER_KILOMETERS * this.fuelConsumption);
+
+    if (result > this.currentFuelVolume) return false;
+    if (result <= this.currentFuelVolume) return true;
+  }
+
   // 🔥 MAIN METHODS
   brand(string) {
     if (!this.isValidString(string)) throw new Error("Invalid brand name");
@@ -274,7 +283,7 @@ class Car {
     this.maxSpeed = number;
   }
 
-  maxFuelVolume(number) {
+  _maxFuelVolume(number) {
     const validRange = this.isValidInteger(20, 100);
     const numberIsValid = validRange(number);
 
@@ -310,13 +319,47 @@ class Car {
     if (!this.isStarted) throw new Error("Car hasn't started yet");
     this.isStarted = false;
   }
+
+  fillUpGasTank(litres) {
+    const validRange = this.isValidInteger(0, Infinity);
+    const numberIsValid = validRange(litres);
+
+    if (numberIsValid === false) throw new Error("Invalid fuel amount");
+    if (litres <= 0) throw new Error("Invalid fuel amount");
+
+    if (litres > this.maxFuelVolume) throw new Error("Too much fuel");
+    if (this.isStarted) throw new Error("You have to shut down your car first");
+
+    this.currentFuelVolume = litres;
+  }
+
+  drive(speed, hours) {
+    const rangeSpeed = this.isValidInteger(0, Infinity);
+    const numberIsValidSpeed = rangeSpeed(speed);
+
+    const rangeHours = this.isValidInteger(0, Infinity);
+    const numberIsValidHours = rangeHours(hours);
+
+    if (numberIsValidSpeed === false) throw new Error("Invalid speed");
+    if (numberIsValidHours === false) throw new Error("Invalid duration");
+
+    if (speed > this.maxSpeed) throw new Error("Car can't go this fast");
+
+    if (this.isStarted === false)
+      throw new Error("You have to start your car first");
+
+    const isEnoughFuel = this.isEnoughFuel(speed, hours);
+    if (isEnoughFuel === false) throw new Error("You don't have enough fuel");
+  }
 }
 
 // TODO: remove dashes ❌❌❌❌❌❌❌❌❌❌❌❌
 
 // const car = new Car();
-// // console.log(car.maxFuelVolume);
-// car.maxFuelVolume(30);
+// car.fillUpGasTank(20);
+// console.log(car);
+// car._start();
+// car.drive(100, 100);
 
 try {
   module.exports = Car;
