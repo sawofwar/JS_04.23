@@ -340,7 +340,7 @@ class Car {
     if (litres > this.maxFuelVolume) throw new Error("Too much fuel");
     if (this.isStarted) throw new Error("You have to shut down your car first");
 
-    this.currentFuelVolume = litres;
+    this.currentFuelVolume += litres;
   }
 
   drive(speed, hours) {
@@ -373,15 +373,23 @@ class Car {
 
     this.mileage += distance;
   }
+
+  repair() {
+    if (this.isStarted) throw new Error("You have to shut down your car first");
+    if (this.currentFuelVolume !== this.maxFuelVolume)
+      throw new Error("You have to fill up your gas tank first");
+
+    this.health = 100;
+  }
+
+  getFullAmount() {
+    if (this.maxFuelVolume - this.currentFuelVolume <= 0) return 0;
+
+    return this.maxFuelVolume - this.currentFuelVolume;
+  }
 }
 
 // TODO: remove dashes ❌❌❌❌❌❌❌❌❌❌❌❌
-
-// const car = new Car();
-// car._maxSpeed(160);
-// car.fillUpGasTank(9);
-// car._start();
-// car.drive(150, 10);
 
 try {
   module.exports = Car;
