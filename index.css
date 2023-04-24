@@ -12,7 +12,9 @@ body {
 }
 
 h1 {
-  margin-bottom: 24px;
+  margin: 24px 0;
+
+  text-align: center;
 }
 
 .container {
@@ -26,8 +28,26 @@ h1 {
 .calculator {
   background: gainsboro;
 
-  width: 15rem;
+  width: 300px;
   /* margin: 100px auto; */
+}
+
+.screen {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 100px;
+  background-color: black;
+
+  margin: 20px 5px;
+}
+
+.screen__inner {
+  background-color: white;
+  height: 70%;
+  width: 80%;
 }
 
 .buttons {
@@ -38,8 +58,13 @@ h1 {
   /* grid-template-rows: 10; */
 }
 
-.buttons__operators {
-  display: none;
+.buttons__operators--horizontal {
+  display: flex;
+}
+
+.buttons__operators--vertical {
+  display: flex;
+  flex-direction: column;
 }
 
 .buttons__grey-buttons {
@@ -52,6 +77,14 @@ h1 {
 }
 
 .btn--grey {
+  background: grey;
+}
+
+.btn--orange {
+  background: orange;
+}
+
+.btn {
   width: 50px;
   aspect-ratio: 1/1;
 
