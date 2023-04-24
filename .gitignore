@@ -11,6 +11,5 @@ node_modules
 currying.js
 
 *.md
-index.html
 
 jest.config.js
