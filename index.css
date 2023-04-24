@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 18px;
+  font-family: Inter, Helvetica, sans-serif;
+}
+
+h1 {
+  margin-bottom: 24px;
+}
+
+.container {
+  display: flex;
+  height: 100dvh;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.calculator {
+  background: gainsboro;
+
+  width: 15rem;
+  /* margin: 100px auto; */
+}
+
+.buttons {
+  /* background: teal; */
+
+  display: grid;
+  /* grid-template-columns: 4; */
+  /* grid-template-rows: 10; */
+}
+
+.buttons__operators {
+  display: none;
+}
+
+.buttons__grey-buttons {
+  display: grid;
+
+  grid-template-columns: 50px 50px 50px;
+  grid-template-rows: auto auto auto auto;
+
+  gap: 10px 5px;
+}
+
+.btn--grey {
+  width: 50px;
+  aspect-ratio: 1/1;
+
+  border-radius: 7px;
+  border: 0;
+
+  font-size: 1.25rem;
+}
