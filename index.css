@@ -7,18 +7,22 @@
 }
 
 :root {
-  --btn-width: 50px;
+  --btn-width: 55px;
+  --text-black: #212529;
 }
 
 body {
   font-size: 18px;
   font-family: Inter, Helvetica, sans-serif;
+
+  color: var(--text-black);
+  background: black;
 }
 
 .container {
-  display: flex;
   height: 100dvh;
 
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -29,6 +33,7 @@ body {
   grid-template-columns: var(--btn-width) var(--btn-width) var(--btn-width) var(
       --btn-width
     );
+
   grid-template-rows:
     var(--btn-width) var(--btn-width) var(--btn-width) var(--btn-width)
     var(--btn-width) var(--btn-width) var(--btn-width) var(--btn-width);
@@ -36,42 +41,50 @@ body {
   background: gainsboro;
 
   padding: 20px 20px;
+  border-radius: 20px;
 }
 
-h1 {
-  font-size: 0.5rem;
-  margin: 24px 0;
-
-  text-align: center;
-
-  column-span: 1/-1;
+.heading {
+  grid-column: 1/-1;
   grid-row: 1;
+
+  font-size: 0.75rem;
 }
 
 .screen {
-  column-span: 1/-1;
-  grid-row: 2;
+  height: calc(var(--btn-width) * 2);
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  height: calc(var(--btn-width) * 2);
-  background-color: black;
+  grid-column: 1/-1;
+  grid-row: 2;
 
-  /* margin: 20px 5px; */
+  background-color: var(--text-black);
+
+  border-radius: 5px;
 }
 
 .screen__inner {
+  height: 80%;
+  width: 90%;
+
   background-color: white;
-  height: 70%;
-  width: 80%;
+
+  border-radius: 3px;
 }
 
 .buttons {
+  grid-row: 4;
   display: grid;
-  display: none;
+
+  grid-template-columns: var(--btn-width) var(--btn-width) var(--btn-width) var(
+      --btn-width
+    );
+  grid-template-rows: var(--btn-width) var(--btn-width) var(--btn-width) var(
+      --btn-width
+    );
 }
 
 .buttons__operators--horizontal {
@@ -79,17 +92,24 @@ h1 {
 }
 
 .buttons__operators--vertical {
+  grid-column: 4;
+  grid-row: 2;
+
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .buttons__grey-buttons {
   display: grid;
 
-  grid-template-columns: 50px 50px 50px;
-  grid-template-rows: auto auto auto auto;
+  grid-row: 2;
 
-  gap: 10px 5px;
+  grid-template-columns: var(--btn-width) var(--btn-width) var(--btn-width);
+  grid-template-rows: var(--btn-width) var(--btn-width) var(--btn-width) var(
+      --btn-width
+    );
+
+  /* gap: 10px 5px; */
 }
 
 .btn--grey {
