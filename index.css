@@ -1,149 +1,69 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
-
-* {
-  padding: 0;
-  margin: 0;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-}
-
-:root {
-  --btn-width: 55px;
-  --text-black: #212529;
+  font-family: sans-serif;
+  font-weight: normal;
 }
 
 body {
-  font-size: 18px;
-  font-family: Inter, Helvetica, sans-serif;
-
-  color: var(--text-black);
-  background: black;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to right, #00aaff, #00ff6c);
 }
 
-.container {
-  height: 100dvh;
-
-  display: flex;
-  align-items: center;
+.calculator-grid {
+  display: grid;
   justify-content: center;
+  align-content: center;
+
+  min-height: 100vh;
+
+  /* 🔥🔥🔥 columns repeat */
+  grid-template-columns: repeat(4, 100px);
+  /* 🔥🔥🔥 minmax: minimum 120px, at maximum -- auto (as large as it needs) */
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
-.calculator {
-  display: grid;
+.calculator-grid > button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid white;
 
-  grid-template-columns: var(--btn-width) var(--btn-width) var(--btn-width) var(
-      --btn-width
-    );
-
-  grid-template-rows:
-    var(--btn-width) var(--btn-width) var(--btn-width) var(--btn-width)
-    var(--btn-width) var(--btn-width) var(--btn-width) var(--btn-width);
-
-  background: gainsboro;
-
-  padding: 20px 20px;
-  border-radius: 20px;
+  /* 🔥 removing outline put up by default by browsers */
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
-.heading {
-  grid-column: 1/-1;
-  grid-row: 1;
-
-  font-size: 0.75rem;
+.calculator-grid > button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
-.screen {
-  height: calc(var(--btn-width) * 2);
+.span-two {
+  grid-column: span 2;
+}
+
+.output {
+  grid-column: 1 / -1;
+  background-color: rgba(0, 0, 0, 0.75);
 
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
 
-  grid-column: 1/-1;
-  grid-row: 2;
+  /* 🔥🔥🔥 breaking words */
+  word-wrap: break-word;
+  word-break: break-all;
 
-  background-color: var(--text-black);
-
-  border-radius: 5px;
+  padding: 10px;
 }
 
-.screen__inner {
-  height: 80%;
-  width: 90%;
-
-  background-color: white;
-
-  border-radius: 3px;
+.output .previous-operand {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.5rem;
 }
-
-.screen__inner__input {
-  margin-top: 20%;
-
-  text-align: end;
-
-  font-size: 1.1rem;
-}
-
-.buttons {
-  grid-row: 4;
-  display: grid;
-
-  grid-template-columns: var(--btn-width) var(--btn-width) var(--btn-width) var(
-      --btn-width
-    );
-  grid-template-rows: var(--btn-width) var(--btn-width) var(--btn-width) var(
-      --btn-width
-    );
-}
-
-.buttons__operators--horizontal {
-  display: flex;
-}
-
-.buttons__operators--vertical {
-  grid-column: 4;
-  grid-row: 2;
-
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.buttons__grey-buttons {
-  display: grid;
-
-  grid-row: 2;
-
-  grid-template-columns: var(--btn-width) var(--btn-width) var(--btn-width);
-  grid-template-rows: var(--btn-width) var(--btn-width) var(--btn-width) var(
-      --btn-width
-    );
-
-  /* gap: 10px 5px; */
-}
-
-.btn--grey {
-  background: grey;
-}
-
-.btn--orange {
-  background: orange;
-}
-
-.btn {
-  width: var(--btn-width);
-  aspect-ratio: 1/1;
-
-  border-radius: 7px;
-  border: 0;
-
-  font-size: 1.25rem;
-
-  transition: 0.02s;
-}
-
-.btn:hover {
-  background: green;
-}
-
-.btn:active {
-  opacity: 0.8;
+.output .current-operand {
+  color: white;
+  font-size: 2.5rem;
 }
