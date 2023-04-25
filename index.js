@@ -1,5 +1,7 @@
 "use strict";
 
+// 🔥🔥🔥 eval() -- НЕБЕЗОПАСНАЯ ФУНКЦИЯ, можно для калькулятора
+
 // SELECTORS
 const inputScreen = document.querySelector(".screen__inner__input");
 
