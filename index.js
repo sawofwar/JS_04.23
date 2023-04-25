@@ -8,24 +8,13 @@ class Calculator {
 }
 
 // SELECTORS
-const inputScreen = document.querySelector(".screen__inner__input");
+const numberButtons = document.querySelectorAll("[data-number]");
+const operationButtons = document.querySelectorAll("[data-operation]");
+const equalsButton = document.querySelector("[data-equals]");
+const deleteButton = document.querySelector("[data-delete]");
+const clearButton = document.querySelector("[data-clear]");
+const signButton = document.querySelector("[data-sign]");
 
-const divide = document.querySelector(".divide");
-const multiply = document.querySelector(".multiply");
-const sign = document.querySelector(".sign");
-
-const greyButtonsNodeList = document.querySelectorAll(".btn--grey");
-const greyButtons = Array.from(greyButtonsNodeList);
-
-const orangeButtonsNodeList = document.querySelectorAll(".btn--orange");
-const orangeButtons = Array.from(orangeButtonsNodeList);
-
-const greySelectors = {};
-greyButtons.forEach((selector) => {
-  greySelectors[selector.textContent] = selector;
-});
-
-const orangeSelectors = {};
-orangeButtons.forEach((selector) => {
-  orangeSelectors[selector.textContent] = selector;
-});
+// console.log(equalsButton, deleteButton, clearButton, signButton);
+console.log(numberButtons);
+console.log(operationButtons);
