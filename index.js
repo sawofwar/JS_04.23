@@ -1,5 +1,12 @@
 "use strict";
 
+class Calculator {
+  constructor(currentNumber, previousNumber) {
+    this.currentNumber = currentNumber;
+    this.previousNumber = previousNumber;
+  }
+}
+
 // SELECTORS
 const inputScreen = document.querySelector(".screen__inner__input");
 
@@ -50,3 +57,4 @@ function add(...args) {
 }
 
 console.log(orangeSelectors);
+module.exports = Calculator;
