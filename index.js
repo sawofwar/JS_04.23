@@ -29,32 +29,3 @@ const orangeSelectors = {};
 orangeButtons.forEach((selector) => {
   orangeSelectors[selector.textContent] = selector;
 });
-
-window.addEventListener("click", (e) => {
-  if (e.target.classList.contains("btn")) {
-    // 🔥 DEL (BACKSPACE)
-
-    if (e.target.textContent === "Del") {
-      const currentInput = inputScreen.textContent.slice(0, -1);
-      inputScreen.textContent = currentInput;
-    } else if (e.target.textContent === "C") {
-      // 🔥 CLEAR ALL
-
-      inputScreen.textContent = "";
-    } else if (e.target.textContent === "=") {
-    } else {
-      // 🔥 NORMAL FUNCTIONALITY
-
-      const targetCharacter = e.target.textContent;
-      inputScreen.textContent += targetCharacter;
-    }
-  }
-});
-
-// 🔥 HELPER FUNCTIONS
-function add(...args) {
-  return args.reduce((accumulator, current) => accumulator + current);
-}
-
-console.log(orangeSelectors);
-module.exports = Calculator;
