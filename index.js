@@ -1,10 +1,24 @@
 "use strict";
 
-class Calculator {
+export class Calculator {
   constructor(currentNumber, previousNumber) {
     this.currentNumber = currentNumber;
     this.previousNumber = previousNumber;
   }
+
+  clear() {}
+
+  delete() {}
+
+  appendNumber(number) {}
+
+  chooseOperation(operation) {}
+
+  compute()
+
+  getDisplayNumber(number) {}
+
+  updateDisplay() {}
 }
 
 // 🔥 SELECTORS
@@ -17,3 +31,5 @@ const signButton = document.querySelector("[data-sign]");
 
 const currentOperand = document.querySelector("[data-current-operand]");
 const previousOperand = document.querySelector("[data-previous-operand]");
+
+const calculator = new Calculator(currentOperand, previousOperand);
