@@ -128,4 +128,14 @@ body {
   border: 0;
 
   font-size: 1.25rem;
+
+  transition: 0.02s;
+}
+
+.btn:hover {
+  background: green;
+}
+
+.btn:active {
+  opacity: 0.8;
 }
