@@ -1,6 +1,8 @@
 "use strict";
 
 // SELECTORS
+const inputScreen = document.querySelector(".screen__inner__input");
+
 const greyButtonsNodeList = document.querySelectorAll(".btn--grey");
 const greyButtons = Array.from(greyButtonsNodeList);
 
@@ -20,10 +22,10 @@ orangeButtons.forEach((selector) => {
 });
 
 window.addEventListener("click", (e) => {
-  // console.log(e.target.textContent);
-  // console.log(e.target.classList);
-  if (e.target.classList.contains("btn"))
+  if (e.target.classList.contains("btn")) {
     console.log("this is a button : ", e.target.textContent);
 
-  // e.target.style.background;
+    const targetCharacter = e.target.textContent;
+    inputScreen.textContent += targetCharacter;
+  }
 });

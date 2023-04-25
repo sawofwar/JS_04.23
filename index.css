@@ -75,6 +75,14 @@ body {
   border-radius: 3px;
 }
 
+.screen__inner__input {
+  margin-top: 20%;
+
+  text-align: end;
+
+  font-size: 1.1rem;
+}
+
 .buttons {
   grid-row: 4;
   display: grid;
