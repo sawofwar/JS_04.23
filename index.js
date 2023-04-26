@@ -1,5 +1,3 @@
-"use strict";
-
 class Calculator {
   constructor(previousOperandTextElement, currentOperandTextElement) {
     this.previousOperandTextElement = previousOperandTextElement;
@@ -23,7 +21,19 @@ class Calculator {
   appendNumber(number) {
     if (number === "." && this.currentOperand.includes(".")) return;
 
+    if (this.currentOperand.toString().length >= 16) {
+      return;
+    }
+
     this.currentOperand = this.currentOperand.toString() + number.toString();
+
+    console.log(this.currentOperand.toString().length);
+  }
+
+  toggleSign() {
+    if (this.currentOperand === "") return;
+
+    this.currentOperand = parseFloat(this.currentOperand) * -1;
   }
 
   chooseOperation(operation) {
@@ -81,7 +91,7 @@ class Calculator {
     if (isNaN(integerDigits)) {
       integerDisplay = "";
     } else {
-      integerDisplay = integerDigits.toLocaleString("en", {
+      integerDisplay = integerDigits.toLocaleString("ru", {
         maximumFractionDigits: 0,
       });
     }
@@ -110,8 +120,6 @@ class Calculator {
 }
 
 // SELECTORS
-// 🔥 so as not to mix css selectors with javascript stuff, we use "data" attributes
-
 const numberButtons = document.querySelectorAll("[data-number]");
 const operationButtons = document.querySelectorAll("[data-operation]");
 const equalsButton = document.querySelector("[data-equals]");
@@ -124,6 +132,11 @@ const currentOperandTextElement = document.querySelector(
   "[data-current-operand]"
 );
 
+const signButton = document.querySelector("[data-sign");
+
+// previousOperandTextElement.textContent = "123";
+// currentOperandTextElement.textContent = "456";
+
 const calculator = new Calculator(
   previousOperandTextElement,
   currentOperandTextElement
@@ -133,8 +146,6 @@ numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
     calculator.appendNumber(button.innerText);
     calculator.updateDisplay();
-
-    console.log(calculator.currentOperandTextElement);
   });
 });
 
@@ -145,17 +156,22 @@ operationButtons.forEach((button) => {
   });
 });
 
-equalsButton.addEventListener("click", (button) => {
+equalsButton.addEventListener("click", () => {
   calculator.compute();
   calculator.updateDisplay();
 });
 
-clearButton.addEventListener("click", (button) => {
+clearButton.addEventListener("click", () => {
   calculator.clear();
   calculator.updateDisplay();
 });
 
-deleteButton.addEventListener("click", (button) => {
+deleteButton.addEventListener("click", () => {
   calculator.delete();
+  calculator.updateDisplay();
+});
+
+signButton.addEventListener("click", () => {
+  calculator.toggleSign();
   calculator.updateDisplay();
 });
