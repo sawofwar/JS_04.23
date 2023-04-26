@@ -1,5 +1,18 @@
 "use strict";
 
+/*
+✅ clear button
+sign button
+✅ del button
+/ button
+*
+-
++
+=
+
+✅ number buttons
+*/
+
 export class Calculator {
   constructor(currentNumber, previousNumber) {
     this.currentNumber = currentNumber;
@@ -14,7 +27,9 @@ export class Calculator {
     this.operation = undefined;
   }
 
-  delete() {}
+  delete() {
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
+  }
 
   appendNumber(number) {
     if (number === "." && this.currentNumber.includes(".")) return;
@@ -64,5 +79,10 @@ window.addEventListener("click", (e) => {
 
 clearButton.addEventListener("click", (e) => {
   calculator.clear();
+  calculator.updateDisplay();
+});
+
+deleteButton.addEventListener("click", (e) => {
+  calculator.delete();
   calculator.updateDisplay();
 });
