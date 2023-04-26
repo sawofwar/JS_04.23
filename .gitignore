@@ -14,3 +14,5 @@ currying.js
 *.md
 
 jest.config.js
+
+.babelrc

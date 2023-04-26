@@ -3,14 +3,14 @@
 /*
 ✅ clear button
 sign button
-✅ del button
+✅ 🔥 del button -- final
 / button
 *
 -
 +
 =
 
-✅ number buttons
+✅ 🔥 number buttons -- final
 */
 
 export class Calculator {
@@ -38,7 +38,7 @@ export class Calculator {
   }
 
   appendNumber(number) {
-    if (number === "." && this.currentNumber.includes(".")) return;
+    if (number === "." && this.currentOperand.includes(".")) return;
 
     this.currentOperand = this.currentOperand + "" + (number + "");
   }
@@ -111,17 +111,20 @@ window.addEventListener("click", (e) => {
   }
 });
 
-// clearButton.addEventListener("click", (e) => {
-//   calculator.clear();
-//   calculator.updateDisplay();
-// });
+// OLD EVENT LISTENERS
+/*
+clearButton.addEventListener("click", (e) => {
+  calculator.clear();
+  calculator.updateDisplay();
+});
 
-// // deleteButton.addEventListener("click", (e) => {
-// //   calculator.delete();
-// //   calculator.updateDisplay();
-// // });
+deleteButton.addEventListener("click", (e) => {
+  calculator.delete();
+  calculator.updateDisplay();
+});
 
-// signButton.addEventListener("click", (e) => {
-//   calculator.toggleSign();
-//   calculator.updateDisplay();
-// });
+signButton.addEventListener("click", (e) => {
+  calculator.toggleSign();
+  calculator.updateDisplay();
+});
+*/
