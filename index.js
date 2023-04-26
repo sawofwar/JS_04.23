@@ -82,9 +82,8 @@ class Calculator {
   }
 
   getDisplayNumber(number) {
-    // split number into decimal place and actual number
     const stringNumber = number.toString();
-    const integerDigits = parseFloat(stringNumber.split(".")); // get first part
+    const integerDigits = parseFloat(stringNumber.split("."));
     const decimalDigits = stringNumber.split(".")[1];
 
     let integerDisplay;
@@ -108,7 +107,6 @@ class Calculator {
       this.currentOperand
     );
 
-    // adding operation symbol
     if (this.operation != null) {
       this.previousOperandTextElement.innerText = `${this.getDisplayNumber(
         this.previousOperand
@@ -133,9 +131,6 @@ const currentOperandTextElement = document.querySelector(
 );
 
 const signButton = document.querySelector("[data-sign");
-
-// previousOperandTextElement.textContent = "123";
-// currentOperandTextElement.textContent = "456";
 
 const calculator = new Calculator(
   previousOperandTextElement,
