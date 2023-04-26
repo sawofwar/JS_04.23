@@ -61,3 +61,8 @@ window.addEventListener("click", (e) => {
     console.log(calculator.currentNumber);
   }
 });
+
+clearButton.addEventListener("click", (e) => {
+  calculator.clear();
+  calculator.updateDisplay();
+});
