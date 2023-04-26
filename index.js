@@ -27,6 +27,12 @@ export class Calculator {
     this.operation = undefined;
   }
 
+  toggleSign() {
+    this.currentOperand = this.currentOperand * -1;
+    console.log(this.currentOperand);
+    this.updateDisplay();
+  }
+
   delete() {
     this.currentOperand = this.currentOperand.toString().slice(0, -1);
   }
@@ -69,11 +75,17 @@ numberButtons.forEach(button => {
 */
 
 window.addEventListener("click", (e) => {
-  if (e.target.hasAttribute("data-number")) {
+  const hasDataNumber = e.target.hasAttribute("data-number");
+  const hasDataDelete = e.target.hasAttribute("data-delete");
+  const hasDataClear = e.target.hasAttribute("data-delete");
+  const hasDataSign = e.target.hasAttribute("data-sign");
+
+  if (hasDataNumber) {
     calculator.appendNumber(e.target.innerText);
     calculator.updateDisplay();
-
-    console.log(calculator.currentNumber);
+  } else if (hasDataDelete) {
+    calculator.delete();
+    calculator.updateDisplay();
   }
 });
 
@@ -82,7 +94,12 @@ clearButton.addEventListener("click", (e) => {
   calculator.updateDisplay();
 });
 
-deleteButton.addEventListener("click", (e) => {
-  calculator.delete();
+// deleteButton.addEventListener("click", (e) => {
+//   calculator.delete();
+//   calculator.updateDisplay();
+// });
+
+signButton.addEventListener("click", (e) => {
+  calculator.toggleSign();
   calculator.updateDisplay();
 });
