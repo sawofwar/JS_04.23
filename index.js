@@ -74,32 +74,54 @@ numberButtons.forEach(button => {
 })
 */
 
+const actionAndUpdate = (action, event) => {
+  switch (action) {
+    case "clear":
+      calculator.clear();
+      calculator.updateDisplay();
+      break;
+    case "delete":
+      calculator.delete();
+      calculator.updateDisplay();
+      break;
+    case "sign":
+      calculator.toggleSign();
+      calculator.updateDisplay();
+      break;
+    case "number":
+      calculator.appendNumber(event.target.innerText);
+      calculator.updateDisplay();
+  }
+};
+
 window.addEventListener("click", (e) => {
   const hasDataNumber = e.target.hasAttribute("data-number");
   const hasDataDelete = e.target.hasAttribute("data-delete");
-  const hasDataClear = e.target.hasAttribute("data-delete");
+  const hasDataClear = e.target.hasAttribute("data-clear");
   const hasDataSign = e.target.hasAttribute("data-sign");
 
   if (hasDataNumber) {
-    calculator.appendNumber(e.target.innerText);
-    calculator.updateDisplay();
+    actionAndUpdate("number", e);
   } else if (hasDataDelete) {
-    calculator.delete();
-    calculator.updateDisplay();
+    actionAndUpdate("delete");
+  } else if (hasDataClear) {
+    actionAndUpdate("clear");
+  } else if (hasDataSign) {
+    actionAndUpdate("sign");
   }
 });
 
-clearButton.addEventListener("click", (e) => {
-  calculator.clear();
-  calculator.updateDisplay();
-});
-
-// deleteButton.addEventListener("click", (e) => {
-//   calculator.delete();
+// clearButton.addEventListener("click", (e) => {
+//   calculator.clear();
 //   calculator.updateDisplay();
 // });
 
-signButton.addEventListener("click", (e) => {
-  calculator.toggleSign();
-  calculator.updateDisplay();
-});
+// // deleteButton.addEventListener("click", (e) => {
+// //   calculator.delete();
+// //   calculator.updateDisplay();
+// // });
+
+// signButton.addEventListener("click", (e) => {
+//   calculator.toggleSign();
+//   calculator.updateDisplay();
+// });
