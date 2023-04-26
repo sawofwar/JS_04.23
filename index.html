@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="index.css" />
+    <title>CACLTR</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="calculator">
+        <div class="heading">
+          <h1>Calculator</h1>
+        </div>
+        <div class="screen">
+          <div class="screen__inner">
+            <div data-previous-operand class="screen__inner__input"></div>
+            <div data-current-operand class="screen__inner__input"></div>
+          </div>
+        </div>
+        <div class="buttons">
+          <div class="buttons__grey-buttons">
+            <button data-number class="btn--grey btn">9</button>
+            <button data-number class="btn--grey btn">8</button>
+            <button data-number class="btn--grey btn">7</button>
+            <button data-number class="btn--grey btn">6</button>
+            <button data-number class="btn--grey btn">5</button>
+            <button data-number class="btn--grey btn">4</button>
+            <button data-number class="btn--grey btn">3</button>
+            <button data-number class="btn--grey btn">2</button>
+            <button data-number class="btn--grey btn">1</button>
+            <button data-number class="btn--grey btn">0</button>
+            <button data-number class="btn--grey btn">00</button>
+            <button data-number class="btn--grey btn">.</button>
+          </div>
+
+          <div class="buttons__operators--horizontal">
+            <button data-clear class="btn--orange btn">C</button>
+            <button data-sign class="btn--orange btn sign">+/-</button>
+            <button data-delete class="btn--orange btn">Del</button>
+            <button data-operation class="btn--orange btn divide">/</button>
+          </div>
+
+          <div class="buttons__operators--vertical">
+            <button data-operation class="btn--orange btn multiply">*</button>
+            <button data-operation class="btn--orange btn">-</button>
+            <button data-operation class="btn--orange btn">+</button>
+            <button data-equals class="btn--orange btn">=</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
